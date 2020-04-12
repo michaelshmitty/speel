@@ -1,0 +1,8 @@
+{
+  "words": [
+    { "word": "boek", "image": "assets/book.png" },
+    { "word": "kat", "image": "assets/cat.png" },
+    { "word": "kok", "image": "assets/chef.png" },
+    { "word": "slang", "image": "assets/snake.png" }
+  ]
+}
