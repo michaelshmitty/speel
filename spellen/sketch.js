@@ -17,7 +17,7 @@ function draw() {
 }
 
 function keyReleased() {
-  if (!game.won) {
+  if (!game.won && !game.talking) {
     if (key == "Enter") {
       game.sayWord();
     } else {

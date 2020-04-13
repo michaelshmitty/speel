@@ -9,9 +9,17 @@ class Game {
     this.mistake = false;
     this.image = loadImage("assets/" + this.currentWord + ".png");
     this.timer = 0;
+    this.talking = false;
     this.speech = new p5.Speech();
     this.speech.setLang("nl-NL");
+    this.speech.setRate(0.6);
     this.speech.interrupt = false;
+    this.speech.onStart = () => {
+      this.talking = true;
+    };
+    this.speech.onEnd = () => {
+      this.talking = false;
+    };
     this.sayWord();
   }
 
