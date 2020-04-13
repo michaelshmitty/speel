@@ -12,7 +12,7 @@ class Game {
     this.talking = false;
     this.speech = new p5.Speech();
     this.speech.setLang("nl-NL");
-    this.speech.setRate(0.6);
+    this.speech.setRate(0.7);
     this.speech.interrupt = false;
     this.speech.onStart = () => {
       this.talking = true;
