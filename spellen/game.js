@@ -15,6 +15,7 @@ class Game {
     clear();
     this.drawImage();
     this.drawPlaceholder();
+    this.drawWord();
     this.drawAnswer();
     if (this.won) {
       this.timer += deltaTime;
@@ -41,6 +42,14 @@ class Game {
   drawPlaceholder() {
     for (let i = 0; i < this.currentWord.word.length; i++) {
       line(50 + 100 * i, 400, 50 + 100 * i + 50, 400);
+    }
+  }
+
+  drawWord() {
+    for (let i = 0; i < this.currentWord.word.length; i++) {
+      fill("rgba(100,100,100,0.2)");
+      text(this.currentWord.word[i].toUpperCase(), 59 + 100 * i, 390);
+      fill("black");
     }
   }
 
