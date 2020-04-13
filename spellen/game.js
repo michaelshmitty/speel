@@ -9,6 +9,10 @@ class Game {
     this.mistake = false;
     this.image = loadImage("assets/" + this.currentWord + ".png");
     this.timer = 0;
+    this.speech = new p5.Speech();
+    this.speech.setLang("nl-NL");
+    this.speech.interrupt = false;
+    this.sayWord();
   }
 
   draw() {
@@ -20,7 +24,7 @@ class Game {
     if (this.won) {
       this.timer += deltaTime;
       background("rgba(0,255,0,0.8)");
-      if (this.timer >= 1000) {
+      if (this.timer >= 3000) {
         this.timer = 0;
         this.won = false;
         this.nextWord();
@@ -60,10 +64,12 @@ class Game {
   }
 
   checkLetter(letter) {
+    this.speech.speak(letter);
     if (letter === this.currentWord[this.currentLetterIndex]) {
       this.mistake = false;
       this.answer += letter;
       if (this.currentLetterIndex === this.currentWord.length - 1) {
+        this.speech.speak(this.currentWord);
         this.won = true;
       } else {
         this.currentLetterIndex += 1;
@@ -93,6 +99,16 @@ class Game {
     }
   }
 
+  sayWord() {
+    this.speech.speak(this.currentWord);
+    let spelledOutWord = "";
+    for (const letter of this.currentWord) {
+      spelledOutWord += letter;
+      spelledOutWord += "...";
+    }
+    this.speech.speak(spelledOutWord);
+  }
+
   reset() {
     this.won = false;
     this.mistake = false;
@@ -100,5 +116,6 @@ class Game {
     this.answer = "";
     this.currentWord = this.words[this.currentWordIndex];
     this.image = loadImage("assets/" + this.currentWord + ".png");
+    this.sayWord();
   }
 }

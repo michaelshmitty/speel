@@ -1,4 +1,5 @@
 let data = {};
+let speech;
 let game;
 
 function preload() {
@@ -18,9 +19,12 @@ function draw() {
 function keyReleased() {
   if (!game.won) {
     if (key == "Enter") {
-      game.hint();
+      game.sayWord();
     } else {
-      game.checkLetter(key);
+      if (key.match(/^[A-Za-z]$/)) {
+        game.checkLetter(key);
+      }
     }
+    return false;
   }
 }
