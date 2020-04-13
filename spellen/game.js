@@ -7,7 +7,7 @@ class Game {
     this.answer = "";
     this.won = false;
     this.mistake = false;
-    this.image = loadImage(this.currentWord.image);
+    this.image = loadImage("assets/" + this.currentWord + ".png");
     this.timer = 0;
   }
 
@@ -36,19 +36,19 @@ class Game {
   }
 
   drawImage() {
-    image(this.image, width / 2 - 100, 10, 200, 200);
+    image(this.image, width / 2 - 100, 10);
   }
 
   drawPlaceholder() {
-    for (let i = 0; i < this.currentWord.word.length; i++) {
+    for (let i = 0; i < this.currentWord.length; i++) {
       line(50 + 100 * i, 400, 50 + 100 * i + 50, 400);
     }
   }
 
   drawWord() {
-    for (let i = 0; i < this.currentWord.word.length; i++) {
+    for (let i = 0; i < this.currentWord.length; i++) {
       fill("rgba(100,100,100,0.2)");
-      text(this.currentWord.word[i].toUpperCase(), 59 + 100 * i, 390);
+      text(this.currentWord[i].toUpperCase(), 59 + 100 * i, 390);
       fill("black");
     }
   }
@@ -60,10 +60,10 @@ class Game {
   }
 
   checkLetter(letter) {
-    if (letter === this.currentWord.word[this.currentLetterIndex]) {
+    if (letter === this.currentWord[this.currentLetterIndex]) {
       this.mistake = false;
       this.answer += letter;
-      if (this.currentLetterIndex === this.currentWord.word.length - 1) {
+      if (this.currentLetterIndex === this.currentWord.length - 1) {
         this.won = true;
       } else {
         this.currentLetterIndex += 1;
@@ -85,9 +85,9 @@ class Game {
   hint() {
     if (!this.won) {
       this.mistake = false;
-      this.answer += this.currentWord.word[this.currentLetterIndex];
+      this.answer += this.currentWord[this.currentLetterIndex];
       this.currentLetterIndex += 1;
-      if (this.currentLetterIndex === this.currentWord.word.length) {
+      if (this.currentLetterIndex === this.currentWord.length) {
         this.won = true;
       }
     }
@@ -99,6 +99,6 @@ class Game {
     this.currentLetterIndex = 0;
     this.answer = "";
     this.currentWord = this.words[this.currentWordIndex];
-    this.image = loadImage(this.currentWord.image);
+    this.image = loadImage("assets/" + this.currentWord + ".png");
   }
 }
